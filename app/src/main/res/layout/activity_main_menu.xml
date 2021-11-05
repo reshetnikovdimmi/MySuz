@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/frameLayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+  <TextView
+      android:id="@+id/shopTV"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageButton
+      android:id="@+id/rtk"
+
+      android:layout_width="0dp"
+      android:layout_height="60dp"
+      android:layout_marginStart="3dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="6dp"
+      android:background="@drawable/edittextstyle"
+      android:foreground="@drawable/rtk"
+      app:layout_constraintEnd_toStartOf="@+id/stocksBUT"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/shopTV"
+      tools:ignore="SpeakableTextPresentCheck" />
+
+  <ImageButton
+      android:id="@+id/t2"
+      android:background="@drawable/edittextstyle"
+      android:layout_width="0dp"
+      android:layout_height="60dp"
+      android:layout_marginTop="5dp"
+      app:layout_constraintEnd_toEndOf="@+id/rtk"
+      app:layout_constraintStart_toStartOf="@+id/rtk"
+      app:layout_constraintTop_toBottomOf="@+id/rtk"
+      app:srcCompat="@drawable/unnamed" />
+
+  <ImageButton
+      android:id="@+id/stocksBUT"
+
+      android:layout_width="0dp"
+      android:layout_height="60dp"
+      android:layout_marginStart="3dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="6dp"
+      android:background="@drawable/edittextstyle"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/rtk"
+      app:layout_constraintTop_toBottomOf="@+id/shopTV"
+      app:srcCompat="@drawable/mqdefault"
+      tools:ignore="SpeakableTextPresentCheck" />
+
+  <ImageButton
+      android:id="@+id/mts"
+      android:background="@drawable/edittextstyle"
+      android:layout_width="0dp"
+      android:layout_height="60dp"
+      android:layout_marginTop="5dp"
+      app:layout_constraintEnd_toEndOf="@+id/stocksBUT"
+      app:layout_constraintStart_toStartOf="@+id/stocksBUT"
+      app:layout_constraintTop_toBottomOf="@+id/stocksBUT"
+      app:srcCompat="@drawable/mts" />
+    <include
+        layout="@layout/fv_promo_progressbar"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

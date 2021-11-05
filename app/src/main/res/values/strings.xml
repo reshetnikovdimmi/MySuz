@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MySuz</string>
+    <string name="Vhod">Пожалуйста, войдите в систему</string>
+    <string name="ButVhod">Вход</string>
+    <string name="login_register_success">не верный пароль</string>
+    <string name="logout">Выход</string>
+    <string name="auto_input">Автовход</string>
+    <string name="no_connection">Нет подключения</string>
+    <string name="login_register_error">Ошибка</string>
+    <string name="success">Успех</string>
+    <string name="Enter_your_username_password">Введите логин/пароль</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
