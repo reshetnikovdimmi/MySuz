@@ -18,9 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.suz.Entry_and_promotions.CoversT2;
+import com.suz.Entry_and_promotions.SIM_T2;
 import com.suz.Entry_and_promotions.Retrofit.CoversList;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.Entry_and_promotions.Retrofit.ServiseApi;
+import com.suz.Entry_and_promotions.SIM_T2;
 import com.suz.R;
 import com.suz.Service_Notification.MyServiceNotification;
 import com.suz.Service_Notification.NotifResiver;
@@ -42,7 +44,7 @@ import retrofit2.Response;
 public class MainActivityMenu extends AppCompatActivity {
 
 TextView shopTV;
-ImageButton stocksBUT, Covers;
+ImageButton stocksBUT, Covers, SIM_T2;
     private Employee mUser;
     public static final String USER_KEY = "USER_KEY";
     private SharedPreferencesHelper mSharedPreferencesHelper;
@@ -59,6 +61,7 @@ ImageButton stocksBUT, Covers;
         mSharedPreferencesHelper = new SharedPreferencesHelper(this);
         shopTV=findViewById(R.id.shopTV);
         stocksBUT=findViewById(R.id.stocksBUT);
+        SIM_T2=findViewById(R.id.t2);
         Covers=findViewById(R.id.Covers);
         Bundle bundle = getIntent().getExtras();
         mUser = (Employee) bundle.get(USER_KEY);
@@ -66,6 +69,7 @@ ImageButton stocksBUT, Covers;
 
 
         shopTV.setText(mUser.getShop());
+
         tvProgressCircle.setVisibility(View.GONE);
 
         stocksBUT.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +107,21 @@ ImageButton stocksBUT, Covers;
 
 
             }
+        });
+
+        SIM_T2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplicationContext(), SIM_T2.class);
+                startActivity(intent);
 
 
-
-
+            }
 
         });
+
+
+
         myServiceNotification = new MyServiceNotification();
         Context context = this.getApplicationContext();
         //myServiceNotification.alarmNotification(context);
