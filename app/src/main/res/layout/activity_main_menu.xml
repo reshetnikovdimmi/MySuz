@@ -74,6 +74,18 @@
       app:layout_constraintStart_toStartOf="@+id/stocksBUT"
       app:layout_constraintTop_toBottomOf="@+id/stocksBUT"
       app:srcCompat="@drawable/mts" />
+    <ImageButton
+        android:id="@+id/Covers"
+        android:text="Covers"
+        android:background="@drawable/edittextstyle"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/mts"
+        app:layout_constraintStart_toStartOf="@+id/mts"
+        app:layout_constraintTop_toBottomOf="@+id/mts"
+        app:srcCompat="@drawable/wgrxgdoazly"
+        />
     <include
         layout="@layout/fv_promo_progressbar"
 

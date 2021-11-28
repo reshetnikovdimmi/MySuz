@@ -93,4 +93,6 @@ public class Stocks {
                 ", price='" + price +
                 '}';
     }
+
+
 }
