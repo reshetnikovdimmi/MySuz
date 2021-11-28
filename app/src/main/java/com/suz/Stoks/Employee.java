@@ -1,4 +1,4 @@
-package com.suz;
+package com.suz.Stoks;
 
 import java.io.Serializable;
 

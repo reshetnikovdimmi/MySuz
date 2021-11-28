@@ -1,4 +1,4 @@
-package com.suz;
+package com.suz.Stoks;
 
 
 import android.app.FragmentManager;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.suz.R;
 
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {//унаследовали

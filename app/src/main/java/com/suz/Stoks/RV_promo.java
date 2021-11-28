@@ -1,8 +1,7 @@
-package com.suz;
+package com.suz.Stoks;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -12,19 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.suz.AppDelegate;
+import com.suz.R;
 import com.suz.database.Stocks;
 import com.suz.database.StocksDao;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +22,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -60,7 +49,7 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
         tvProgressCircle = findViewById(R.id.vf_progressbar);
         mExpandableListView = findViewById(R.id.expandable_listview);
 
-
+        
         listData(); // call method
 
         listAdapter = new ListAdapter(this, getApplicationContext(), listChild, listHeader);

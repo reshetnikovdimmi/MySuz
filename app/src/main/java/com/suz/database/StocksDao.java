@@ -18,7 +18,7 @@ public interface StocksDao {
     void insertStocks(List<Stocks> stocks);
 
 //SELECT * FROM `stocks` WHERE `c` <= '2021-10-31' AND `do` >= '2021-10-31' ORDER BY `stocks`.`do` DESC
-    @Query("select * from stocks where `end` >= :date and `beginning` <= :date order by `end`desc")
+    @Query("select * from stocks where `end` >= :date and `beginning` <= :date order by `end`asc")
     List<Stocks> getAlbums(String date);
 
     @Query("select * from stocks where `end` <= :date order by `end`desc")
@@ -27,7 +27,8 @@ public interface StocksDao {
     @Query("select * from stocks where `beginning` >= :date order by `end`desc")
     List<Stocks> getFuture_promos(String date);
 
-
-
+    @Query("select * from stocks where `end` >= :date and `beginning` <= :date GROUP by `price`")
+    List<Stocks> getEndPromo(String date);
+    //SELECT DISTINCT `Promo price` FROM `stocks` WHERE `c` <= '2021-11-09' AND `do` >= '2021-11-09' ORDER BY `do` ASC
 }
 

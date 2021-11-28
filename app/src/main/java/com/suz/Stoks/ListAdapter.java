@@ -1,24 +1,17 @@
-package com.suz;
+package com.suz.Stoks;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.suz.R;
-import com.suz.RV_promo;
 import com.suz.database.Stocks;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class ListAdapter extends BaseExpandableListAdapter {
     private final RV_promo rv_promo;

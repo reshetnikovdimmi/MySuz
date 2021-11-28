@@ -1,4 +1,4 @@
-package com.suz;
+package com.suz.Stoks;
 
 import static android.R.layout.simple_spinner_item;
 
@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.suz.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,6 +84,10 @@ public class MainFragment extends Fragment {
         BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+
 
              if (ETP.getText().toString().equals(passports.get(item))) {
 

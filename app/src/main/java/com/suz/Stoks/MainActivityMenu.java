@@ -1,12 +1,12 @@
-package com.suz;
-
-import static com.suz.rv_promo_fragment.*;
+package com.suz.Stoks;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,30 +17,32 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.suz.Entry_and_promotions.CoversT2;
+import com.suz.Entry_and_promotions.Retrofit.CoversList;
+import com.suz.Entry_and_promotions.Retrofit.RetroClient;
+import com.suz.Entry_and_promotions.Retrofit.ServiseApi;
+import com.suz.R;
+import com.suz.Service_Notification.MyServiceNotification;
+import com.suz.Service_Notification.NotifResiver;
+import com.suz.create_a_list.Сreate_a_list;
 import com.suz.database.Stocks;
-import com.suz.database.StocksDao;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivityMenu extends AppCompatActivity {
+
 TextView shopTV;
-ImageButton stocksBUT, bonusesBUT;
+ImageButton stocksBUT, Covers;
     private Employee mUser;
     public static final String USER_KEY = "USER_KEY";
     private SharedPreferencesHelper mSharedPreferencesHelper;
@@ -48,6 +50,7 @@ ImageButton stocksBUT, bonusesBUT;
     public static List<Stocks> albums = new ArrayList<>();
     Stocks stocks;
     View tvProgressCircle;
+    private  MyServiceNotification myServiceNotification;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ ImageButton stocksBUT, bonusesBUT;
         mSharedPreferencesHelper = new SharedPreferencesHelper(this);
         shopTV=findViewById(R.id.shopTV);
         stocksBUT=findViewById(R.id.stocksBUT);
+        Covers=findViewById(R.id.Covers);
         Bundle bundle = getIntent().getExtras();
         mUser = (Employee) bundle.get(USER_KEY);
         tvProgressCircle = findViewById(R.id.vf_progressbar);
@@ -67,7 +71,14 @@ ImageButton stocksBUT, bonusesBUT;
         stocksBUT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                create_a_list();
+                tvProgressCircle.setVisibility(View.VISIBLE);
+                try {
+                    create_a_list();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 tvProgressCircle.setVisibility(View.VISIBLE);
 /*
                 getSupportFragmentManager()
@@ -81,9 +92,29 @@ ImageButton stocksBUT, bonusesBUT;
 */
 
 
+
             }
         });
+        Covers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               final Intent intent = new Intent(getApplicationContext(), CoversT2.class);
+                startActivity(intent);
 
+
+            }
+
+
+
+
+
+        });
+        myServiceNotification = new MyServiceNotification();
+        Context context = this.getApplicationContext();
+        //myServiceNotification.alarmNotification(context);
+       Intent intent = new Intent(context, MyServiceNotification.class);
+        startService(intent);
+        alarmNotification(context);
     }
 
     @Override
@@ -101,9 +132,10 @@ ImageButton stocksBUT, bonusesBUT;
             case R.id.actionLogout:
 
                 mSharedPreferencesHelper.addUser("0","0");
-
+                stopService(new  Intent(MainActivityMenu.this, MyServiceNotification.class));
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
+
                 break;
             case R.id.auto_input:
 
@@ -124,73 +156,43 @@ ImageButton stocksBUT, bonusesBUT;
         Toast.makeText(this, string, Toast.LENGTH_LONG).show();
     }
 
-    public void create_a_list(){
-        RequestQueue PQ = Volley.newRequestQueue(this);
-        StringRequest SR = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-              //  Log.d("array", response + "response");
+    public void create_a_list() throws ExecutionException, InterruptedException {
 
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String sucess = jsonObject.getString("success");
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                    if (sucess.equals("1")) {
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject object = jsonArray.getJSONObject(i);
-                            int id = object.getInt("id");
-                            String brand = object.getString("brand");
-                            String model = object.getString("model");
-                            String beginning = object.getString("beginning");
-                            String end = object.getString("end");
-                            String price = object.getString("price");
-                            stocks = new Stocks(id,brand,model,beginning,end,price);
-                            albums.add(stocks);
-
-                        }
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Executor myExecutor = Executors.newSingleThreadExecutor();
-                myExecutor.execute(() -> {
-                    final StocksDao stocksDatabase = ((AppDelegate) getApplicationContext()).getmStocksDatabase().getStocksDao();
-                    stocksDatabase.insertStocks(albums);
-
-
-                });
-                final Intent intent = new Intent(getApplicationContext(), RV_promo.class);
-                startActivity(intent);
-                tvProgressCircle.setVisibility(View.GONE);
-
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future future = service.submit(new Runnable() {
+            public void run() {
+                Сreate_a_list create_a_list = new Сreate_a_list();
+                create_a_list.create_a_list(getApplicationContext());
             }
+        });
+        final Intent intent = new Intent(getApplicationContext(), RV_promo.class);
+        startActivity(intent);
+        tvProgressCircle.setVisibility(View.GONE);
+        future.get();
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-//                showMessage(R.string.no_connection);
-            }
-        }) {
-            @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-                //map.put("phone", ET.getText().toString());
-                return map;
 
-            }
 
-        };
-        PQ.add(SR);
+
+
+
 
 
     }
+    public void alarmNotification(Context context) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.SECOND, 10);
+        long time = calendar.getTimeInMillis();
+        AlarmManager am = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getApplicationContext(), NotifResiver.class);
+        //intent.putExtra(ONE_TIME, Boolean.FALSE);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 123, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //After after 5 seconds
 
+        am.setRepeating(AlarmManager.RTC_WAKEUP, time,AlarmManager.INTERVAL_HALF_HOUR, pi);
+
+    }
 
 
 }

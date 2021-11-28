@@ -3,6 +3,9 @@
     package="com.suz">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".AppDelegate"
@@ -11,17 +14,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MySuz">
+        android:theme="@style/Theme.MySuz"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Entry_and_promotions.CoversT2"
+            android:exported="false" />
 
+        <service
+            android:name=".Service_Notification.MyServiceNotification"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
-            android:name=".MainActivityMenu"
+            android:name=".Stoks.MainActivityMenu"
             android:exported="true" />
         <activity
-            android:name=".RV_promo"
+            android:name=".Stoks.RV_promo"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Stoks.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
