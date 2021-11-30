@@ -73,19 +73,29 @@ public class SIM_T2 extends AppCompatActivity {
 
                 String[] column = {
                         "п/п",
-                        "Чехлы",
-                        "bagration",
-                        "beethoven",
-                        "zavertyaeva",
-                        "zyvaevsk",
-                        "neftezavodskaya",
-                        "bolsherechye",
-                        "cool",
-                        "moskalenki",
-                        "marianovka",
-                        "muromtsevo",
-                        "tavrichesky",
-                        "container"};
+                        "Номенклатура",
+                        "ТМЦ",
+                        "Бренд",
+                        "Осн-й склад SIM",
+                        "Багратиона",
+                        "Бетховена",
+                        "Называевск",
+                        "Крутинка",
+                        "Москаленки",
+                        "Одесское",
+                        "Знпменское",
+
+
+                "Марьяновка",
+                "Муромцево",
+                "Таврическое",
+                "Тара",
+                "Колосовка",
+                "Седельниково",
+                "Тевриз",
+                "Усть Ишим",
+                "Нефтезаводская",
+                "Завертяева"};
                 int rl=contactList.size();
                 int cl=column.length;
 
@@ -131,37 +141,37 @@ public class SIM_T2 extends AppCompatActivity {
 
                         if (i>=1 && j==1)
                         {
-                            textView.setText(contactList.get(cou++).getTMC())  ;
+                            textView.setText(contactList.get(cou++).getNomenclature())  ;
 
                         }
 
                         if (i>=1 && j==2)
                         {
-                            textView.setText (contactList.get(cou1++).getBagration());
+                            textView.setText (contactList.get(cou1++).getTMC());
 
                         }
                         if (i>=1 && j==3)
                         {
-                            textView.setText (contactList.get(cou2++).getBeethoven());
+                            textView.setText (contactList.get(cou2++).getBrand());
                         }
                         if (i>=1 && j==4)
                         {
-                            textView.setText (contactList.get(cou3++).getZavertyaeva());
+                            textView.setText (contactList.get(cou3++).getMain_SIM_Warehouse());
                         }
                         if (i>=1 && j==5)
                         {
 
-                            textView.setText (contactList.get(cou4++).getZyvaevsk());
+                            textView.setText (contactList.get(cou4++).getBagration());
                         }
                         if (i>=1 && j==6)
                         {
 
-                            textView.setText (contactList.get(cou5++).getNeftezavodskaya());
+                            textView.setText (contactList.get(cou5++).getBeethoven());
                         }
                         if (i>=1 && j==7)
                         {
 
-                           // textView.setText (contactList.get(cou6++).getBolsherechye());
+                           textView.setText (contactList.get(cou6++).getZyvaevsk());
                         }
                         if (i>=1 && j==8)
                         {
@@ -174,19 +184,19 @@ public class SIM_T2 extends AppCompatActivity {
                         }
                         if (i>=1 && j==10)
                         {
-                            textView.setText (contactList.get(cou9++).getMarianovka());
+                            textView.setText (contactList.get(cou9++).getOdessa());
                         }
                         if (i>=1 && j==11)
                         {
-                            textView.setText (contactList.get(cou10++).getMuromtsevo());
+                            textView.setText (contactList.get(cou10++).getZnamenskoe());
                         }
                         if (i>=1 && j==12)
                         {
-                            textView.setText (contactList.get(cou11++).getTavrichesky());
+                            textView.setText (contactList.get(cou11++).getMarianovka());
                         }
                         if (i>=1 && j==13)
                         {
-                            textView.setText (contactList.get(cou12++).getContainer());
+                            textView.setText (contactList.get(cou12++).getMuromtsevo());
                         }
                         if (i>=1 && j==0)
                         {
@@ -198,9 +208,8 @@ public class SIM_T2 extends AppCompatActivity {
 
                             textView.setText(cv[j]);
 
-                            textView.setTextSize(14);
-                            //  textView.setGravity(Gravity.CENTER_VERTICAL );
-                            //  textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            textView.setTextSize(15);
+
                         }
                         // 5) add textView to tableRow
                         tableRow.addView(textView, tableRowParams);

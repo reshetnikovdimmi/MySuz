@@ -23,6 +23,8 @@ import com.suz.database.Covers;
 
 import java.util.ArrayList;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,15 +43,31 @@ public class CoversT2 extends AppCompatActivity {
         tables = (LinearLayout) findViewById(R.id.table);
 
 
-        ServiseApi api = RetroClient.getApiService();
+
+               RetroClient.getApiService().getMyCovers()
+                       .subscribeOn(Schedulers.io())
+                       .observeOn(AndroidSchedulers.mainThread())
+
+                       .subscribe(
+                               Covers -> {
+
+
+                                   contactList = Covers.getData() ;
+                                   Log.d("array", contactList + "contactList");
+                               },
+                               throwable -> {
+
+                               });
+
+       // ServiseApi api = RetroClient.getApiService();
         /**
          * Calling JSON
          */
-        Call<CoversList> call = api.getMyJSON();
+       // Call<CoversList> call = api.getMyJSON();
         /**
          * Enqueue Callback will be call when get response...
          */
-        call.enqueue(new Callback<CoversList>() {
+               RetroClient.getApiService().getMyJSON().enqueue(new Callback<CoversList>() {
             @Override
             public void onResponse(Call<CoversList> call, Response<CoversList> response) {
                 if (response.isSuccessful()) {
@@ -195,8 +213,7 @@ public class CoversT2 extends AppCompatActivity {
                             textView.setText(cv[j]);
 
                             textView.setTextSize(14);
-                          //  textView.setGravity(Gravity.CENTER_VERTICAL );
-                          //  textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
                         }
                         // 5) add textView to tableRow
                         tableRow.addView(textView, tableRowParams);

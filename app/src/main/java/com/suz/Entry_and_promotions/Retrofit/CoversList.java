@@ -17,7 +17,7 @@ public class CoversList {
     @Expose
     private String success;
 
-    public ArrayList<Covers> getData() {
+    public  ArrayList<Covers> getData() {
         return data;
     }
 
@@ -32,4 +32,10 @@ public class CoversList {
     public void setSuccess(String success) {
         this.success = success;
     }
+
+
+
+
+
+
 }
