@@ -18,7 +18,7 @@ public class AppDelegate extends Application {
     public void onCreate() {
         super.onCreate();
 
-        mStocksDatabase = Room.databaseBuilder(getApplicationContext(), StocksDatabase.class, "stocks_database").build();
+        mStocksDatabase = Room.databaseBuilder(getApplicationContext(), StocksDatabase.class, "stocks_database").fallbackToDestructiveMigration().build();
 
     }
 

@@ -15,4 +15,7 @@ public interface ServiseApi {
     @GET("/Android/Segment_SIM_T2.php")
     Call<SIMList> getMySIM();
 
+    @GET("/Android/Segment_SIM_MTS.php")
+    Observable<MTSList> getMyMTS();
+
 }

@@ -5,9 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -17,20 +15,17 @@ import android.widget.TextView;
 
 import com.suz.Entry_and_promotions.Retrofit.CoversList;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
-import com.suz.Entry_and_promotions.Retrofit.ServiseApi;
 import com.suz.R;
 import com.suz.database.Covers;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CoversT2 extends AppCompatActivity {
-    private ArrayList<Covers> contactList;
+    private List<Covers> contactList;
     TextView covers;
     LinearLayout tables;
     int cou,cou1,cou2,cou3,cou4,cou5,cou6,cou7,cou8,cou9,cou10,cou11,cou12 = 0;
@@ -44,7 +39,7 @@ public class CoversT2 extends AppCompatActivity {
 
 
 
-               RetroClient.getApiService().getMyCovers()
+           /*    RetroClient.getApiService().getMyCovers()
                        .subscribeOn(Schedulers.io())
                        .observeOn(AndroidSchedulers.mainThread())
 
@@ -57,7 +52,7 @@ public class CoversT2 extends AppCompatActivity {
                                },
                                throwable -> {
 
-                               });
+                               });*/
 
        // ServiseApi api = RetroClient.getApiService();
         /**
@@ -83,7 +78,7 @@ public class CoversT2 extends AppCompatActivity {
                 }
             }
 
-            private void GeneratingЕable(ArrayList<Covers> contactList) {
+            private void GeneratingЕable(List<Covers> contactList) {
 
                 String[] column = {
                         "п/п",
@@ -146,13 +141,11 @@ public class CoversT2 extends AppCompatActivity {
                         if (i>=1 && j==1)
                         {
                               textView.setText(contactList.get(cou++).getTMC())  ;
-
                         }
 
                         if (i>=1 && j==2)
                         {
                              textView.setText (contactList.get(cou1++).getBagration());
-
                         }
                         if (i>=1 && j==3)
                         {
@@ -164,12 +157,10 @@ public class CoversT2 extends AppCompatActivity {
                         }
                         if (i>=1 && j==5)
                         {
-
                             textView.setText (contactList.get(cou4++).getZyvaevsk());
                         }
                         if (i>=1 && j==6)
                         {
-
                             textView.setText (contactList.get(cou5++).getNeftezavodskaya());
                         }
                         if (i>=1 && j==7)
@@ -183,7 +174,6 @@ public class CoversT2 extends AppCompatActivity {
                         }
                         if (i>=1 && j==9)
                         {
-
                             textView.setText (contactList.get(cou8++).getMoskalenki());
                         }
                         if (i>=1 && j==10)
@@ -205,7 +195,6 @@ public class CoversT2 extends AppCompatActivity {
                         if (i>=1 && j==0)
                         {
                             textView.setText(""+id);
-
                         }
                         else if(i==0 && j >=0)
                         {

@@ -1,9 +1,22 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
+import com.suz.Entry_and_promotions.DataConverterFactory;
+
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class RetroClient {
+    public static final List<Class<?>> NETWORK_EXCEPTIONS = Arrays.asList(
+            UnknownHostException.class,
+            SocketTimeoutException.class,
+            ConnectException.class
+    );
 
     /********
      * URLS
@@ -17,6 +30,7 @@ public class RetroClient {
         return new Retrofit.Builder()
                 .baseUrl(ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(new DataConverterFactory())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

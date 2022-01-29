@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.suz.Entry_and_promotions.CoversT2;
+import com.suz.Entry_and_promotions.SIM_MTS;
 import com.suz.Entry_and_promotions.SIM_T2;
 import com.suz.Entry_and_promotions.Retrofit.CoversList;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
@@ -44,7 +45,7 @@ import retrofit2.Response;
 public class MainActivityMenu extends AppCompatActivity {
 
 TextView shopTV;
-ImageButton stocksBUT, Covers, SIM_T2;
+ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
     private Employee mUser;
     public static final String USER_KEY = "USER_KEY";
     private SharedPreferencesHelper mSharedPreferencesHelper;
@@ -62,6 +63,7 @@ ImageButton stocksBUT, Covers, SIM_T2;
         shopTV=findViewById(R.id.shopTV);
         stocksBUT=findViewById(R.id.stocksBUT);
         SIM_T2=findViewById(R.id.t2);
+        SIM_MTS=findViewById(R.id.mts);
         Covers=findViewById(R.id.Covers);
         Bundle bundle = getIntent().getExtras();
         mUser = (Employee) bundle.get(USER_KEY);
@@ -103,6 +105,15 @@ ImageButton stocksBUT, Covers, SIM_T2;
             @Override
             public void onClick(View v) {
                final Intent intent = new Intent(getApplicationContext(), CoversT2.class);
+                startActivity(intent);
+
+
+            }
+        });
+        SIM_MTS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplicationContext(), SIM_MTS.class);
                 startActivity(intent);
 
 
