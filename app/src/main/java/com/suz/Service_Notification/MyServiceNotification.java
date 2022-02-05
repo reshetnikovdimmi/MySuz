@@ -17,9 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.suz.AppDelegate;
+import com.suz.Entry_and_promotions.RV_promo;
 import com.suz.R;
-import com.suz.Stoks.RV_promo;
-import com.suz.create_a_list.Сreate_a_list;
 import com.suz.database.Stocks;
 import com.suz.database.StocksDao;
 
@@ -94,8 +93,8 @@ alarmNotification(getApplicationContext());
         mScheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                Сreate_a_list create_a_list = new Сreate_a_list();
-                create_a_list.create_a_list(getApplicationContext());
+                //Сreate_a_list create_a_list = new Сreate_a_list();
+                //create_a_list.create_a_list(getApplicationContext());
                 Log.d(TAG, "run" + System.currentTimeMillis());
                 final StocksDao stocksDatabase = ((AppDelegate) getApplicationContext()).getmStocksDatabase().getStocksDao();
                 header3 = stocksDatabase.getEndPromo(RV_promo.datess());

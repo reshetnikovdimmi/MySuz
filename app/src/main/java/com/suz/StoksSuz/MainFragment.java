@@ -1,4 +1,4 @@
-package com.suz.Stoks;
+package com.suz.StoksSuz;
 
 import static android.R.layout.simple_spinner_item;
 
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +42,11 @@ public class MainFragment extends Fragment {
     Button BT;
     EditText ETP;
     ArrayList<String> countries ;
-    public  static ArrayList<String> employeeArrayList = new ArrayList<>();
-    Employee employee;
     String item;
     String url = "https://user357.000webhostapp.com/Android/Droid_Suz.php";
-    HashMap<String, String> passports = new HashMap<>();
+    String url_authorization = "https://user357.000webhostapp.com/Android/Droid_Suz_authorization.php";
     private SharedPreferencesHelper mSharedPreferencesHelper;
-    private Handler handler = new Handler();
+
 
     public static androidx.fragment.app.Fragment newInstance() {
 
@@ -67,12 +64,10 @@ public class MainFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_main,
                 container, false);
 
-
-
         countries = new ArrayList<>();
        countries.add("");
 
-        create_a_list();
+
 
         mSharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
         BT=v.findViewById(R.id.ButVhod);
@@ -87,22 +82,16 @@ public class MainFragment extends Fragment {
 
 
 
+                create_a_list(url_authorization);
 
 
-             if (ETP.getText().toString().equals(passports.get(item))) {
-
-                 extracted(item, passports.get(item));
 
              /* getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, MainFragment.newInstance())
                         .addToBackStack(MainFragment.class.getName())
                         .commit();*/
-                   // Log.d("array", employeeArrayList + "mai");
-                }
-                else {
-                    showMessage(R.string.login_register_success);
-                }
+
 
             }
 
@@ -146,42 +135,59 @@ public class MainFragment extends Fragment {
         getActivity().finish();
     }
 
-    public void create_a_list(){
+    public void create_a_list(String URL){
         RequestQueue PQ = Volley.newRequestQueue(getContext());
-        StringRequest SR = new StringRequest(Request.Method.POST, url, new Response.Listener<String>()
+        StringRequest SR = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>()
         {
             @Override
             public void onResponse(String response)
             {
+                    if(URL.equals(url)) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String sucess = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                employeeArrayList.clear();
+                            if (sucess.equals("1")) {
 
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String sucess = jsonObject.getString("success");
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    String shop = object.getString("shop");
 
-                    if(sucess.equals("1")){
+                                    countries.add(shop);
+                                }
 
-                        for(int i=0;i<jsonArray.length();i++){
+                            }
 
-                            JSONObject object = jsonArray.getJSONObject(i);
-
-                            String  id = object.getString("id");
-                            String  shop = object.getString("shop");
-                            String  pas = object.getString("pas");
-                            countries.add(shop);
-                         employee = new Employee(shop,pas);
-                         passports.put(shop,pas);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), "Error " +e.toString(), Toast.LENGTH_SHORT).show();
                         }
+                    }else {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String sucess = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("login");
 
+                            if (sucess.equals("1")) {
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    String name = object.getString("name");
+                                    String email = object.getString("email");
+                                    extracted(email,name);
+                                }
+
+                            }else{
+
+                                Toast.makeText(getActivity(), "Error " + response, Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), "Error " +e.toString(), Toast.LENGTH_SHORT).show();
+                        }
                     }
-
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-
-                }
                 tvProgressCircle.setVisibility(View.GONE);
             }
 
@@ -196,7 +202,22 @@ public class MainFragment extends Fragment {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                //map.put("phone", ET.getText().toString());
+                if (URL.equals(url_authorization)) {
+                    if(mSharedPreferencesHelper.isLoggin()){
+                        HashMap<String, String> user = mSharedPreferencesHelper.getUserDetail();
+
+                        map.put("login", user.get(mSharedPreferencesHelper.NAME));
+                        map.put("password", user.get(mSharedPreferencesHelper.EMAIL));
+
+                    }else {
+
+
+                        map.put("login", item);
+                        map.put("password", ETP.getText().toString());
+                    }
+                }else {
+
+                }
                 return map;
 
             }
@@ -211,13 +232,13 @@ public class MainFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        if (mSharedPreferencesHelper.SP())  {
+        if (mSharedPreferencesHelper.isLoggin())  {
+create_a_list(url_authorization);
 
-            extracted(mSharedPreferencesHelper.getUser().get(0), mSharedPreferencesHelper.getUser().get(1));
 
         } else {
-            showMessage(R.string.Enter_your_username_password);
 
+            create_a_list(url);
         }
 
     }

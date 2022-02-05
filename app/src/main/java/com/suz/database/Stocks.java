@@ -4,21 +4,44 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class Stocks {
+public class Stocks implements Serializable{
+    @SerializedName("id")
     @PrimaryKey
     @ColumnInfo(name = "id")
     private int id;
+    @SerializedName("brand")
     @ColumnInfo(name = "brand")
     private String brand;
+    @SerializedName("model")
     @ColumnInfo(name = "model")
     private String model;
-    @ColumnInfo(name = "beginning")
-    private String beginning;
-    @ColumnInfo(name = "end")
-    private String end;
+    @SerializedName("price")
     @ColumnInfo(name = "price")
     private String price;
+    @SerializedName("promo")
+    @ColumnInfo(name = "promo")
+    private String promo;
+    @SerializedName("beginning")
+    @ColumnInfo(name = "beginning")
+    private String beginning;
+    @SerializedName("end")
+    @ColumnInfo(name = "end")
+    private String end;
+    @SerializedName("marwel")
+    @ColumnInfo(name = "marwel")
+    private String marwel;
+    @SerializedName("tfn")
+    @ColumnInfo(name = "tfn")
+    private String tfn;
+    @SerializedName("vvp")
+    @ColumnInfo(name = "vvp")
+    private String vvp;
 
 
 
@@ -46,6 +69,22 @@ public class Stocks {
         this.model = model;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPromo() {
+        return promo;
+    }
+
+    public void setPromo(String promo) {
+        this.promo = promo;
+    }
+
     public String getBeginning() {
         return beginning;
     }
@@ -62,37 +101,30 @@ public class Stocks {
         this.end = end;
     }
 
-    public String getPrice() {
-        return price;
+    public String getMarwel() {
+        return marwel;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setMarwel(String marwel) {
+        this.marwel = marwel;
     }
 
-    public Stocks() {
+    public String getTfn() {
+        return tfn;
     }
 
-    public Stocks(int id, String brand, String model, String beginning, String end, String price) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.beginning = beginning;
-        this.end = end;
-        this.price = price;
+    public void setTfn(String tfn) {
+        this.tfn = tfn;
     }
 
-    @Override
-    public String toString() {
-        return "Stocks{" +
-                "id=" + id +
-                ", brand='" + brand +
-                ", model='" + model +
-                ", beginning='" + beginning +
-                ", end='" + end +
-                ", price='" + price +
-                '}';
+    public String getVvp() {
+        return vvp;
     }
+
+    public void setVvp(String vvp) {
+        this.vvp = vvp;
+    }
+
 
 
 }

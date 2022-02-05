@@ -3,6 +3,7 @@ package com.suz.Entry_and_promotions.Retrofit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.suz.database.Covers;
+import com.suz.database.Stocks;
 
 
 import java.util.ArrayList;

@@ -5,10 +5,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.suz.StoksSuz.Employee;
+
 import java.util.List;
-import java.util.Locale;
 
 @Dao
 public interface StocksDao {
@@ -31,7 +30,10 @@ public interface StocksDao {
     List<Stocks> getPast_promos(String date);
 
     @Query("select * from stocks where `beginning` >= :date order by `end`desc")
-    List<Stocks> getFuture_promos(String date);
+   List<Stocks> getFuture_promos(String date);
+
+    @Query("select * from stocks")
+    List<Stocks> getFuture();
 
     @Query("select * from stocks where `end` >= :date and `beginning` <= :date GROUP by `price`")
     List<Stocks> getEndPromo(String date);

@@ -17,7 +17,7 @@ public class MTSList implements Serializable {
 
     private String success;
 
-    public  List<MTS> getData() {
+    public List<MTS> getData() {
         return data;
     }
 

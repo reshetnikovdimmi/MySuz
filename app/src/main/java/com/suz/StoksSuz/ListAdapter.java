@@ -1,4 +1,4 @@
-package com.suz.Stoks;
+package com.suz.StoksSuz;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.suz.Entry_and_promotions.RV_promo;
 import com.suz.R;
 import com.suz.database.Stocks;
 

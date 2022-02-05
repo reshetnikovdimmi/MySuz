@@ -1,8 +1,9 @@
 package com.suz.database;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+@Entity
 public class Covers {
     @PrimaryKey
     @ColumnInfo(name = "id")

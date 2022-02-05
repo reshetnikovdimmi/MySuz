@@ -1,4 +1,4 @@
-package com.suz.Stoks;
+package com.suz.StoksSuz;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +8,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,16 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.suz.Entry_and_promotions.CoversT2;
+import com.suz.Entry_and_promotions.RV_promo;
 import com.suz.Entry_and_promotions.SIM_MTS;
-import com.suz.Entry_and_promotions.SIM_T2;
-import com.suz.Entry_and_promotions.Retrofit.CoversList;
-import com.suz.Entry_and_promotions.Retrofit.RetroClient;
-import com.suz.Entry_and_promotions.Retrofit.ServiseApi;
 import com.suz.Entry_and_promotions.SIM_T2;
 import com.suz.R;
 import com.suz.Service_Notification.MyServiceNotification;
 import com.suz.Service_Notification.NotifResiver;
-import com.suz.create_a_list.Сreate_a_list;
 import com.suz.database.Stocks;
 
 import java.util.ArrayList;
@@ -37,10 +32,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivityMenu extends AppCompatActivity {
 
@@ -69,6 +60,12 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
         mUser = (Employee) bundle.get(USER_KEY);
         tvProgressCircle = findViewById(R.id.vf_progressbar);
 
+        myServiceNotification = new MyServiceNotification();
+        Context context = this.getApplicationContext();
+        //myServiceNotification.alarmNotification(context);
+        Intent intent = new Intent(context, MyServiceNotification.class);
+        startService(intent);
+        alarmNotification(context);
 
         shopTV.setText(mUser.getShop());
 
@@ -133,19 +130,14 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
 
 
 
-        myServiceNotification = new MyServiceNotification();
-        Context context = this.getApplicationContext();
-        //myServiceNotification.alarmNotification(context);
-       Intent intent = new Intent(context, MyServiceNotification.class);
-        startService(intent);
-        alarmNotification(context);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.profile_menu, menu);
-        menu.findItem(R.id.auto_input).setChecked(mSharedPreferencesHelper.SP());
+        menu.findItem(R.id.auto_input).setChecked(mSharedPreferencesHelper.isLoggin());
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -155,7 +147,7 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
         switch (item.getItemId()) {
             case R.id.actionLogout:
 
-                mSharedPreferencesHelper.addUser("0","0");
+                mSharedPreferencesHelper.logout();
                 stopService(new  Intent(MainActivityMenu.this, MyServiceNotification.class));
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
@@ -165,11 +157,11 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
 
                 if (item.isChecked()){
                     item.setChecked(false);
-                    mSharedPreferencesHelper.addUser("0","0");
+                    mSharedPreferencesHelper.logout();
 
                 }else {
                     item.setChecked(true);
-                    mSharedPreferencesHelper.addUser(mUser.getShop(),mUser.getPas());
+                    mSharedPreferencesHelper.createSession(mUser.getShop(),mUser.getPas());
                 }
             default:
                 break;
@@ -185,8 +177,8 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
         ExecutorService service = Executors.newSingleThreadExecutor();
         Future future = service.submit(new Runnable() {
             public void run() {
-                Сreate_a_list create_a_list = new Сreate_a_list();
-                create_a_list.create_a_list(getApplicationContext());
+                //Сreate_a_list create_a_list = new Сreate_a_list();
+                //create_a_list.create_a_list(getApplicationContext());
             }
         });
         final Intent intent = new Intent(getApplicationContext(), RV_promo.class);

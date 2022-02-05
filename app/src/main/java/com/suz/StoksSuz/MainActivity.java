@@ -1,4 +1,4 @@
-package com.suz.Stoks;
+package com.suz.StoksSuz;
 
 
 import androidx.fragment.app.Fragment;

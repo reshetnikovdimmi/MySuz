@@ -25,6 +25,9 @@
         <activity
             android:name=".Entry_and_promotions.CoversT2"
             android:exported="false" />
+        <activity
+            android:name=".Entry_and_promotions.RV_promo"
+            android:exported="false" />
 
         <service
             android:name=".Service_Notification.MyServiceNotification"
@@ -32,13 +35,10 @@
             android:exported="true" />
 
         <activity
-            android:name=".Stoks.MainActivityMenu"
+            android:name=".StoksSuz.MainActivityMenu"
             android:exported="true" />
         <activity
-            android:name=".Stoks.RV_promo"
-            android:exported="true" />
-        <activity
-            android:name=".Stoks.MainActivity"
+            android:name=".StoksSuz.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,7 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
+import com.suz.database.Stocks;
+
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Call;
@@ -18,4 +20,9 @@ public interface ServiseApi {
     @GET("/Android/Segment_SIM_MTS.php")
     Observable<MTSList> getMyMTS();
 
+   // @GET("/Android/Droid_Suz.php")
+   // Observable<EmploeeList> getMyEmploee();
+
+    @GET("/Android/bonus_2022.php")
+    Observable<StocksList> getMyStocks();
 }

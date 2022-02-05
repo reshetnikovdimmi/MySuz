@@ -1,18 +1,25 @@
-package com.suz.Stoks;
+package com.suz.Entry_and_promotions;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import com.suz.AppDelegate;
+
+import com.suz.Entry_and_promotions.Retrofit.RetroClient;
+import com.suz.Entry_and_promotions.Retrofit.StocksList;
 import com.suz.R;
+import com.suz.StoksSuz.ListAdapter;
+
 import com.suz.database.Stocks;
 import com.suz.database.StocksDao;
 
@@ -24,6 +31,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     ListView listView;
@@ -49,7 +60,26 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
         tvProgressCircle = findViewById(R.id.vf_progressbar);
         mExpandableListView = findViewById(R.id.expandable_listview);
 
-        
+        RetroClient.getApiService().getMyStocks()
+                .subscribeOn(Schedulers.io())
+                .doOnNext(Stocks->getMusicDao().insertStocks(Stocks.getData()))
+                .onErrorReturn(new Function<Throwable, StocksList>() {
+                    @Override
+                    public StocksList apply(@NonNull Throwable throwable) throws Exception {
+
+                        if (RetroClient.NETWORK_EXCEPTIONS.contains(throwable.getClass())) {
+
+                            StocksList response = new StocksList();
+                            response.setData((ArrayList<Stocks>) getMusicDao().getFuture());
+                            return response;
+                        } else return null;
+                    }
+
+
+
+                });
+
+
         listData(); // call method
 
         listAdapter = new ListAdapter(this, getApplicationContext(), listChild, listHeader);
@@ -102,7 +132,7 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
             }
         });
 
-       // mExpandableListView.expandGroup(1);
+        // mExpandableListView.expandGroup(1);
     }
 
 
@@ -119,24 +149,23 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
         listHeader.add("Будующие Promo");
 
 
-
         // Adding child data
         Executor myExecutor = Executors.newSingleThreadExecutor();
         myExecutor.execute(() -> {
 
             List<Stocks> header3 = stocksDatabase.getAlbums(datess());
 
-        List<Stocks> header1 = stocksDatabase.getPast_promos(datess());
+            List<Stocks> header1 = stocksDatabase.getPast_promos(datess());
 
-        List<Stocks> header2 = stocksDatabase.getFuture_promos(datess());
+            List<Stocks> header2 = stocksDatabase.getFuture_promos(datess());
 
 
 
-        listChild.put(listHeader.get(0), header3);
-        listChild.put(listHeader.get(1), header1);
-        listChild.put(listHeader.get(2), header2);
-          //
-    });
+            listChild.put(listHeader.get(0), header3);
+            listChild.put(listHeader.get(1), header1);
+            listChild.put(listHeader.get(2), header2);
+            //
+        });
 
         tvProgressCircle.setVisibility(View.GONE);
 
@@ -160,5 +189,8 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
     public static String datess(){
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         return date;
+    }
+    private StocksDao getMusicDao() {
+        return ((AppDelegate) getApplicationContext()).getmStocksDatabase().getStocksDao();
     }
 }
