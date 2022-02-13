@@ -1,8 +1,5 @@
 package com.suz.StoksSuz;
 
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -16,9 +13,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.suz.Entry_and_promotions.AcAksy;
 import com.suz.Entry_and_promotions.AcPhone;
-
 import com.suz.Entry_and_promotions.Activiti_RTC;
 import com.suz.Entry_and_promotions.RV_promo;
 import com.suz.Entry_and_promotions.SIM_MTS;
@@ -112,15 +111,6 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
 
             }
         });
-        Aksy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent intent = new Intent(getApplicationContext(), AcAksy.class);
-                startActivity(intent);
-
-
-            }
-        });
         SIM_MTS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +135,15 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
             @Override
             public void onClick(View v) {
                 final Intent intent = new Intent(getApplicationContext(), Activiti_RTC.class);
+                startActivity(intent);
+
+
+            }
+        });
+        Aksy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplicationContext(), AcAksy.class);
                 startActivity(intent);
 
 

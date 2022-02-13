@@ -18,7 +18,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Entry_and_promotions.AcAksy"
-            android:exported="false" />
+            android:exported="false"
+             />
         <activity
             android:name=".Entry_and_promotions.SIM_MTS"
             android:exported="false" />

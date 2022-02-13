@@ -16,11 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.suz.AppDelegate;
-import com.suz.Entry_and_promotions.Retrofit.MTSList;
 import com.suz.Entry_and_promotions.Retrofit.RTCList;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.R;
-import com.suz.database.MTS;
 import com.suz.database.RTC;
 import com.suz.database.StocksDao;
 

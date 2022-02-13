@@ -1,9 +1,5 @@
 package com.suz.Entry_and_promotions;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +11,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.suz.AppDelegate;
-import com.suz.Entry_and_promotions.Retrofit.MTSList;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.Entry_and_promotions.Retrofit.SIMList;
 import com.suz.R;
-import com.suz.database.MTS;
 import com.suz.database.SIM;
 import com.suz.database.StocksDao;
 

@@ -1,27 +1,25 @@
-package com.suz.Entry_and_promotions.Retrofit;
+package com.suz.Entry_and_promotions;
 
-
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.suz.database.Stocks;
+import com.suz.database.Phone;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StocksList implements Serializable {
-
+public class PhoneList {
     @SerializedName("data")
-
-    private List<Stocks> data = new ArrayList<>();
+    @Expose
+    private ArrayList<Phone> data = new ArrayList<>();
     @SerializedName("success")
-
+    @Expose
     private String success;
 
-    public List<Stocks> getData() {
+    public List<Phone> getData() {
         return data;
     }
 
-    public void setData(ArrayList<Stocks> data) {
+    public void setData(ArrayList<Phone> data) {
         this.data = data;
     }
 
@@ -32,4 +30,10 @@ public class StocksList implements Serializable {
     public void setSuccess(String success) {
         this.success = success;
     }
+
+
+
+
+
+
 }
