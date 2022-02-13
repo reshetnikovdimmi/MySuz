@@ -1,9 +1,5 @@
 package com.suz.Entry_and_promotions;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +11,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.suz.AppDelegate;
 import com.suz.Entry_and_promotions.Retrofit.MTSList;
+import com.suz.Entry_and_promotions.Retrofit.RTCList;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.R;
 import com.suz.database.MTS;
+import com.suz.database.RTC;
 import com.suz.database.StocksDao;
 
 import java.util.ArrayList;
@@ -29,33 +31,32 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-public class SIM_MTS extends AppCompatActivity {
-
-    private List<MTS> contactList;
+public class Activiti_RTC extends AppCompatActivity {
+    private List<RTC> contactList;
     TextView covers;
     LinearLayout tables;
     int cou,cou1,cou2,cou3,cou4,cou5,cou6,cou7,cou8,cou9,cou10,cou11,cou12 = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sim_mts);
+        setContentView(R.layout.activity_rtc);
 
         covers=findViewById(R.id.textView3);
         tables = (LinearLayout) findViewById(R.id.table);
 
 
 
-        RetroClient.getApiService().getMyMTS()
+        RetroClient.getApiService().getMyRTC()
                 .subscribeOn(Schedulers.io())
-                .doOnNext(MTS-> getMusicDao().insertMTS(MTS.getData()))
-                .onErrorReturn(new Function<Throwable, MTSList>() {
+                .doOnNext(RTC-> getMusicDao().insertRTC(RTC.getData()))
+                .onErrorReturn(new Function<Throwable, RTCList>() {
                     @Override
-                    public MTSList apply(@NonNull Throwable throwable) throws Exception {
+                    public RTCList apply(@NonNull Throwable throwable) throws Exception {
 
                         if (RetroClient.NETWORK_EXCEPTIONS.contains(throwable.getClass())) {
 
-                            MTSList response = new MTSList();
-                            response.setData((ArrayList<MTS>) getMusicDao().getMts());
+                            RTCList response = new RTCList();
+                            response.setData((ArrayList<RTC>) getMusicDao().getRTC());
                             return response;
                         } else return null;
                     }
@@ -66,16 +67,16 @@ public class SIM_MTS extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(
-                        MTS -> {
+                        RTC -> {
 
-                            contactList = MTS.getData();
-                           Log.d("array", contactList + "contactList");
+                            contactList = RTC.getData();
+                            Log.d("array", contactList + "contactList");
                             GeneratingЕable(contactList);
 
-                     //   },
-                     //   throwable -> {
+                            //   },
+                            //   throwable -> {
 
-                            });
+                        });
 
 
 
@@ -87,7 +88,7 @@ public class SIM_MTS extends AppCompatActivity {
         return ((AppDelegate) getApplicationContext()).getmStocksDatabase().getStocksDao();
     }
 
-    private void GeneratingЕable(List<MTS> contactList) {
+    private void GeneratingЕable(List<RTC> contactList) {
 
         String[] column = {
                 "п/п",
@@ -149,58 +150,22 @@ public class SIM_MTS extends AppCompatActivity {
 
                 if (i>=1 && j==1)
                 {
-                    textView.setText(contactList.get(cou++).getRainbow_rates())  ;
+                    textView.setText(contactList.get(cou++).getTmc())  ;
                 }
 
                 if (i>=1 && j==2)
                 {
-                    textView.setText (contactList.get(cou1++).getMTS_tariffs());
+                    textView.setText (contactList.get(cou1++).getModel());
                 }
                 if (i>=1 && j==3)
                 {
-                     textView.setText (contactList.get(cou2++).getMain_warehouse());
+                    textView.setText (contactList.get(cou2++).getBagration());
                 }
                 if (i>=1 && j==4)
                 {
-                    textView.setText (contactList.get(cou3++).getMain_SIM_Warehouse());
+                    textView.setText (contactList.get(cou3++).getMoskalenki());
                 }
-                if (i>=1 && j==5)
-                {
-                    //   textView.setText (contactList.get(cou4++).getZyvaevsk());
-                }
-                if (i>=1 && j==6)
-                {
-                    //  textView.setText (contactList.get(cou5++).getNeftezavodskaya());
-                }
-                if (i>=1 && j==7)
-                {
 
-                    //  textView.setText (contactList.get(cou6++).getBolsherechye());
-                }
-                if (i>=1 && j==8)
-                {
-                    //  textView.setText (contactList.get(cou7++).getCool());
-                }
-                if (i>=1 && j==9)
-                {
-                    //  textView.setText (contactList.get(cou8++).getMoskalenki());
-                }
-                if (i>=1 && j==10)
-                {
-                    //  textView.setText (contactList.get(cou9++).getMarianovka());
-                }
-                if (i>=1 && j==11)
-                {
-                    //  textView.setText (contactList.get(cou10++).getMuromtsevo());
-                }
-                if (i>=1 && j==12)
-                {
-                    //  textView.setText (contactList.get(cou11++).getTavrichesky());
-                }
-                if (i>=1 && j==13)
-                {
-                    //  textView.setText (contactList.get(cou12++).getContainer());
-                }
                 if (i>=1 && j==0)
                 {
                     textView.setText(""+id);

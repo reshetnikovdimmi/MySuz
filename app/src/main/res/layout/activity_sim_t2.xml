@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Entry_and_promotions.CoversT2">
+    tools:context=".Entry_and_promotions.AcPhone">
 
     <TextView
         android:id="@+id/textView3"

@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.suz.AppDelegate;
 import com.suz.Entry_and_promotions.RV_promo;
+import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.R;
 import com.suz.database.Stocks;
 import com.suz.database.StocksDao;
@@ -28,6 +29,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.schedulers.Schedulers;
 
 public class MyServiceNotification extends Service {
     private static final String TAG = "MyServiceNotification";
@@ -93,8 +96,9 @@ alarmNotification(getApplicationContext());
         mScheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                //Сreate_a_list create_a_list = new Сreate_a_list();
-                //create_a_list.create_a_list(getApplicationContext());
+                RetroClient.getApiService().getMyStocks()
+                        .subscribeOn(Schedulers.io())
+                        .doOnNext(Stocks->getMusicDao().insertStocks(Stocks.getData()));
                 Log.d(TAG, "run" + System.currentTimeMillis());
                 final StocksDao stocksDatabase = ((AppDelegate) getApplicationContext()).getmStocksDatabase().getStocksDao();
                 header3 = stocksDatabase.getEndPromo(RV_promo.datess());
@@ -150,7 +154,9 @@ alarmNotification(getApplicationContext());
         Log.d(TAG,  "onDestroy: ");
         }
 
-
+    private StocksDao getMusicDao() {
+        return ((AppDelegate) getApplicationContext()).getmStocksDatabase().getStocksDao();
+    }
 
 
 }

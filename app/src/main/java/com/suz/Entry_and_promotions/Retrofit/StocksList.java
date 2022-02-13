@@ -1,15 +1,14 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 import com.suz.database.Stocks;
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StocksList implements Serializable{
+public class StocksList implements Serializable {
 
         @SerializedName("data")
 

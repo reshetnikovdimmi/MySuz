@@ -1,25 +1,25 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.suz.database.MTS;
+import com.suz.database.Phone;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MTSList implements Serializable {
+public class PhoneList {
     @SerializedName("data")
-
-    private List<MTS> data = new ArrayList<>();
+    @Expose
+    private ArrayList<Phone> data = new ArrayList<>();
     @SerializedName("success")
-
+    @Expose
     private String success;
 
-    public List<MTS> getData() {
+    public List<Phone> getData() {
         return data;
     }
 
-    public void setData(ArrayList<MTS> data) {
+    public void setData(ArrayList<Phone> data) {
         this.data = data;
     }
 
@@ -30,4 +30,10 @@ public class MTSList implements Serializable {
     public void setSuccess(String success) {
         this.success = success;
     }
+
+
+
+
+
+
 }

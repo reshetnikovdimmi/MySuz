@@ -16,7 +16,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.suz.Entry_and_promotions.CoversT2;
+import com.suz.Entry_and_promotions.AcAksy;
+import com.suz.Entry_and_promotions.AcPhone;
+
+import com.suz.Entry_and_promotions.Activiti_RTC;
 import com.suz.Entry_and_promotions.RV_promo;
 import com.suz.Entry_and_promotions.SIM_MTS;
 import com.suz.Entry_and_promotions.SIM_T2;
@@ -36,7 +39,7 @@ import java.util.concurrent.Future;
 public class MainActivityMenu extends AppCompatActivity {
 
 TextView shopTV;
-ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
+ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
     private Employee mUser;
     public static final String USER_KEY = "USER_KEY";
     private SharedPreferencesHelper mSharedPreferencesHelper;
@@ -52,10 +55,12 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
         setContentView(R.layout.activity_main_menu);
         mSharedPreferencesHelper = new SharedPreferencesHelper(this);
         shopTV=findViewById(R.id.shopTV);
+        RTC=findViewById(R.id.rtk);
         stocksBUT=findViewById(R.id.stocksBUT);
         SIM_T2=findViewById(R.id.t2);
         SIM_MTS=findViewById(R.id.mts);
         Covers=findViewById(R.id.Covers);
+        Aksy=findViewById(R.id.Aksy);
         Bundle bundle = getIntent().getExtras();
         mUser = (Employee) bundle.get(USER_KEY);
         tvProgressCircle = findViewById(R.id.vf_progressbar);
@@ -101,7 +106,16 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
         Covers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               final Intent intent = new Intent(getApplicationContext(), CoversT2.class);
+               final Intent intent = new Intent(getApplicationContext(), AcPhone.class);
+                startActivity(intent);
+
+
+            }
+        });
+        Aksy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplicationContext(), AcAksy.class);
                 startActivity(intent);
 
 
@@ -127,7 +141,15 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS;
             }
 
         });
+        RTC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplicationContext(), Activiti_RTC.class);
+                startActivity(intent);
 
+
+            }
+        });
 
 
 

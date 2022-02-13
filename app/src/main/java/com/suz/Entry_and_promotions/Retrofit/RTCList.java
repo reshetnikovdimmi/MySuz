@@ -1,29 +1,26 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
-import com.suz.database.Covers;
-import com.suz.database.Stocks;
+import com.suz.database.RTC;
 
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Generated("jsonschema2pojo")
-
-public class CoversList {
+public class RTCList implements Serializable {
     @SerializedName("data")
-    @Expose
-    private ArrayList<Covers> data = new ArrayList<>();
+
+    private List<RTC> data = new ArrayList<>();
     @SerializedName("success")
-    @Expose
+
     private String success;
 
-    public List<Covers> getData() {
+    public List<RTC> getData() {
         return data;
     }
 
-    public void setData(ArrayList<Covers> data) {
+    public void setData(ArrayList<RTC> data) {
         this.data = data;
     }
 
@@ -34,10 +31,4 @@ public class CoversList {
     public void setSuccess(String success) {
         this.success = success;
     }
-
-
-
-
-
-
 }

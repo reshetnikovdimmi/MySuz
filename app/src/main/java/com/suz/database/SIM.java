@@ -1,11 +1,15 @@
 package com.suz.database;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SIM {
+import java.io.Serializable;
+
+@Entity
+public class SIM implements Serializable {
     @SerializedName("id")
     @PrimaryKey
     @ColumnInfo(name = "id")
@@ -74,33 +78,6 @@ public class SIM {
     @ColumnInfo(name = "Zavertyaeva")
     private String Zavertyaeva;
 
-    public SIM() {
-    }
-
-    public SIM(int id, String nomenclature, String TMC, String brand, String main_SIM_Warehouse, String bagration, String beethoven, String zyvaevsk, String cool, String moskalenki, String odessa, String znamenskoe, String marianovka, String muromtsevo, String tavrichesky, String container, String kolosovka, String sedelnikovo, String tevriz, String ust_Ishim, String neftezavodskaya, String zavertyaeva) {
-        this.id = id;
-        Nomenclature = nomenclature;
-        this.TMC = TMC;
-        Brand = brand;
-        Main_SIM_Warehouse = main_SIM_Warehouse;
-        Bagration = bagration;
-        Beethoven = beethoven;
-        Zyvaevsk = zyvaevsk;
-        Cool = cool;
-        Moskalenki = moskalenki;
-        Odessa = odessa;
-        Znamenskoe = znamenskoe;
-        Marianovka = marianovka;
-        Muromtsevo = muromtsevo;
-        Tavrichesky = tavrichesky;
-        Container = container;
-        Kolosovka = kolosovka;
-        Sedelnikovo = sedelnikovo;
-        Tevriz = tevriz;
-        Ust_Ishim = ust_Ishim;
-        Neftezavodskaya = neftezavodskaya;
-        Zavertyaeva = zavertyaeva;
-    }
 
     public int getId() {
         return id;
@@ -278,31 +255,5 @@ public class SIM {
         Zavertyaeva = zavertyaeva;
     }
 
-    @Override
-    public String toString() {
-        return "SIM{" +
-                "id=" + id +
-                ", Nomenclature='" + Nomenclature + '\'' +
-                ", TMC='" + TMC + '\'' +
-                ", Brand='" + Brand + '\'' +
-                ", Main_SIM_Warehouse='" + Main_SIM_Warehouse + '\'' +
-                ", Bagration='" + Bagration + '\'' +
-                ", Beethoven='" + Beethoven + '\'' +
-                ", Zyvaevsk='" + Zyvaevsk + '\'' +
-                ", Cool='" + Cool + '\'' +
-                ", Moskalenki='" + Moskalenki + '\'' +
-                ", Odessa='" + Odessa + '\'' +
-                ", Znamenskoe='" + Znamenskoe + '\'' +
-                ", Marianovka='" + Marianovka + '\'' +
-                ", Muromtsevo='" + Muromtsevo + '\'' +
-                ", Tavrichesky='" + Tavrichesky + '\'' +
-                ", Container='" + Container + '\'' +
-                ", Kolosovka='" + Kolosovka + '\'' +
-                ", Sedelnikovo='" + Sedelnikovo + '\'' +
-                ", Tevriz='" + Tevriz + '\'' +
-                ", Ust_Ishim='" + Ust_Ishim + '\'' +
-                ", Neftezavodskaya='" + Neftezavodskaya + '\'' +
-                ", Zavertyaeva='" + Zavertyaeva + '\'' +
-                '}';
-    }
+
 }

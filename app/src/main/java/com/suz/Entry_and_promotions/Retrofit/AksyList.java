@@ -1,25 +1,25 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.suz.database.MTS;
+import com.suz.database.Aksy;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MTSList implements Serializable {
+public class AksyList {
     @SerializedName("data")
-
-    private List<MTS> data = new ArrayList<>();
+    @Expose
+    private ArrayList<Aksy> data = new ArrayList<>();
     @SerializedName("success")
-
+    @Expose
     private String success;
 
-    public List<MTS> getData() {
+    public List<Aksy> getData() {
         return data;
     }
 
-    public void setData(ArrayList<MTS> data) {
+    public void setData(ArrayList<Aksy> data) {
         this.data = data;
     }
 

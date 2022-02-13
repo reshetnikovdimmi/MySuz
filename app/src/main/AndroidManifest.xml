@@ -17,16 +17,22 @@
         android:theme="@style/Theme.MySuz"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Entry_and_promotions.AcAksy"
+            android:exported="false" />
+        <activity
             android:name=".Entry_and_promotions.SIM_MTS"
             android:exported="false" />
         <activity
             android:name=".Entry_and_promotions.SIM_T2"
             android:exported="false" />
         <activity
-            android:name=".Entry_and_promotions.CoversT2"
+            android:name=".Entry_and_promotions.AcPhone"
             android:exported="false" />
         <activity
             android:name=".Entry_and_promotions.RV_promo"
+            android:exported="false" />
+        <activity
+            android:name=".Entry_and_promotions.Activiti_RTC"
             android:exported="false" />
 
         <service

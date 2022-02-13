@@ -86,6 +86,18 @@
         app:layout_constraintTop_toBottomOf="@+id/mts"
         app:srcCompat="@drawable/wgrxgdoazly"
         />
+    <ImageButton
+        android:id="@+id/Aksy"
+        android:text="Aksy"
+        android:background="@drawable/edittextstyle"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/t2"
+        app:layout_constraintStart_toStartOf="@+id/t2"
+        app:layout_constraintTop_toBottomOf="@+id/t2"
+        app:srcCompat="@drawable/akses"
+        />
     <include
         layout="@layout/fv_promo_progressbar"
 

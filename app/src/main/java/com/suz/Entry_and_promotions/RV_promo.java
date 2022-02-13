@@ -77,10 +77,24 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
 
 
 
-                });
+                })
 
+
+                .subscribe(
+                        Stocks -> {
+
+                           // contactList = MTS.getData();
+                            //Log.d("array", contactList + "contactList");
+                          //  GeneratingЕable(contactList);
+
+                             },
+                              throwable -> {
+
+                        })
+        ;
 
         listData(); // call method
+
 
         listAdapter = new ListAdapter(this, getApplicationContext(), listChild, listHeader);
 
