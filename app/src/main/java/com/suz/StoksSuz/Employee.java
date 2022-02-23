@@ -1,8 +1,26 @@
 package com.suz.StoksSuz;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Employee implements Serializable {
+
+
+    public ArrayList<String> countries;
+
+    public ArrayList<String> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(ArrayList<String> countries) {
+        this.countries = countries;
+    }
+
+    public Employee(ArrayList<String> countries) {
+        this.countries = countries;
+    }
+
+
     private String id,shop,pas;
     private String brand, model, beginning, end, price;
 

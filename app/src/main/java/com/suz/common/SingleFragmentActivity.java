@@ -1,4 +1,4 @@
-package com.suz.StoksSuz;
+package com.suz.common;
 
 
 import android.app.FragmentManager;
@@ -11,17 +11,18 @@ import androidx.fragment.app.Fragment;
 import com.suz.R;
 
 
-public abstract class SingleFragmentActivity extends AppCompatActivity {//унаследовали
+public abstract class SingleFragmentActivity extends AppCompatActivity implements BaseView.Create_countries,BaseView.extracted, BaseView.View{//унаследовали
         @Override
-protected void onCreate(@Nullable Bundle
-        savedInstanceState){//переопределили Create
+protected void onCreate(@Nullable Bundle savedInstanceState){//переопределили Create
         super.onCreate(savedInstanceState); //добавим ContentView
         setContentView(R.layout.ac_single_fragment);
+
+
         if (savedInstanceState == null) { //добавленная логика
         androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();//обязательно support
         //начнём транзацию по запуску фрагмента
         fragmentManager.beginTransaction()
-        .replace(R.id.fragmentContainer, getFragment())
+        .replace(R.id.fragmentContainer, getFragment(),"USERNAME_KEY")
         .commit();//после реплейса вызвали commit
         }
         }//абстрактный метод получения фрагмента

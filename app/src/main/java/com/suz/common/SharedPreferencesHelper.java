@@ -1,7 +1,9 @@
-package com.suz.StoksSuz;
+package com.suz.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.suz.StoksSuz.MainFragment;
 
 import java.util.HashMap;
 

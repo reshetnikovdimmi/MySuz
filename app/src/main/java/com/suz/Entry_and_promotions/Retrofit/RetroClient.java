@@ -1,7 +1,5 @@
 package com.suz.Entry_and_promotions.Retrofit;
 
-import com.suz.Entry_and_promotions.DataConverterFactory;
-
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -30,7 +28,7 @@ public class RetroClient {
         return new Retrofit.Builder()
                 .baseUrl(ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(new DataConverterFactory())
+
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

@@ -20,6 +20,7 @@ import com.suz.AppDelegate;
 import com.suz.Entry_and_promotions.RV_promo;
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.R;
+import com.suz.common.NotifResiver;
 import com.suz.database.Stocks;
 import com.suz.database.StocksDao;
 

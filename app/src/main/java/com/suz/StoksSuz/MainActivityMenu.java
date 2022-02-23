@@ -24,7 +24,8 @@ import com.suz.Entry_and_promotions.SIM_MTS;
 import com.suz.Entry_and_promotions.SIM_T2;
 import com.suz.R;
 import com.suz.Service_Notification.MyServiceNotification;
-import com.suz.Service_Notification.NotifResiver;
+import com.suz.common.NotifResiver;
+import com.suz.common.SharedPreferencesHelper;
 import com.suz.database.Stocks;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
     String url = "https://user357.000webhostapp.com/Android/Droid_Suz_bonus.php";
     public static List<Stocks> albums = new ArrayList<>();
     Stocks stocks;
+    Employee employee;
     View tvProgressCircle;
     private  MyServiceNotification myServiceNotification;
     @Override
@@ -60,6 +62,7 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
         SIM_MTS=findViewById(R.id.mts);
         Covers=findViewById(R.id.Covers);
         Aksy=findViewById(R.id.Aksy);
+
         Bundle bundle = getIntent().getExtras();
         mUser = (Employee) bundle.get(USER_KEY);
         tvProgressCircle = findViewById(R.id.vf_progressbar);
@@ -74,6 +77,9 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
         shopTV.setText(mUser.getShop());
 
         tvProgressCircle.setVisibility(View.GONE);
+
+
+//        Log.d("summD1", String.valueOf(employee.getCountries()));
 
         stocksBUT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,8 +204,8 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
         ExecutorService service = Executors.newSingleThreadExecutor();
         Future future = service.submit(new Runnable() {
             public void run() {
-                //Сreate_a_list create_a_list = new Сreate_a_list();
-                //create_a_list.create_a_list(getApplicationContext());
+                //Сreate_a_list create_countries = new Сreate_a_list();
+                //create_countries.create_countries(getApplicationContext());
             }
         });
         final Intent intent = new Intent(getApplicationContext(), RV_promo.class);

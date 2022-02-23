@@ -6,6 +6,7 @@
     <string name="logout">Выход</string>
     <string name="auto_input">Автовход</string>
     <string name="no_connection">Нет подключения</string>
+    <string name="connection_restored">Подключение востановлено</string>
     <string name="login_register_error">Ошибка</string>
     <string name="success">Успех</string>
     <string name="Data_not_updated">Данные не обновлена проверте подключение</string>
