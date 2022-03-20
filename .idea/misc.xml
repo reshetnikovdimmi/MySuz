@@ -18,9 +18,14 @@
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/activity_sim_mts.xml" value="0.24728260869565216" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/activity_sim_t2.xml" value="0.25416666666666665" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/content_aksy.xml" value="0.21014492753623187" />
+        <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/dinamic_rv_layout.xml" value="0.21014492753623187" />
+        <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fragment_1.xml" value="0.2" />
+        <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fragment_1_2.xml" value="0.25" />
+        <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fragment_2.xml" value="0.2" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fragment_blank.xml" value="0.2368659420289855" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fragment_first.xml" value="0.11458333333333333" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fragment_second.xml" value="0.11458333333333333" />
+        <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fv_aksy.xml" value="0.21014492753623187" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fv_promo.xml" value="0.2368659420289855" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fv_promo_fragment.xml" value="0.23278985507246377" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/fv_promo_progressbar.xml" value="0.24954710144927536" />
@@ -30,6 +35,7 @@
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/list_items.xml" value="0.21693840579710144" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/rv_promo.xml" value="0.17753623188405798" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/spiner.xml" value="0.12360688956433637" />
+        <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/static_rv_item.xml" value="0.21014492753623187" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/layout/switch_item.xml" value="0.13177083333333334" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/menu/profile_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/ANDROID/SUZ/app/src/main/res/mipmap-anydpi-v26/ic_Tele2.xml" value="0.14739583333333334" />

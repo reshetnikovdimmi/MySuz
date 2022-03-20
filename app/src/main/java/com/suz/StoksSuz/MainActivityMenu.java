@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.suz.Entry_and_promotions.AcAksy;
 import com.suz.Entry_and_promotions.AcPhone;
 import com.suz.Entry_and_promotions.Activiti_RTC;
 import com.suz.Entry_and_promotions.RV_promo;
+import com.suz.Entry_and_promotions.RemainsActivity;
 import com.suz.Entry_and_promotions.SIM_MTS;
 import com.suz.Entry_and_promotions.SIM_T2;
 import com.suz.R;
@@ -39,6 +41,7 @@ import java.util.concurrent.Future;
 public class MainActivityMenu extends AppCompatActivity {
 
 TextView shopTV;
+Button butFrag;
 ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
     private Employee mUser;
     public static final String USER_KEY = "USER_KEY";
@@ -56,6 +59,7 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
         setContentView(R.layout.activity_main_menu);
         mSharedPreferencesHelper = new SharedPreferencesHelper(this);
         shopTV=findViewById(R.id.shopTV);
+        butFrag=findViewById(R.id.butFrag);
         RTC=findViewById(R.id.rtk);
         stocksBUT=findViewById(R.id.stocksBUT);
         SIM_T2=findViewById(R.id.t2);
@@ -65,7 +69,7 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
 
         Bundle bundle = getIntent().getExtras();
         mUser = (Employee) bundle.get(USER_KEY);
-        tvProgressCircle = findViewById(R.id.vf_progressbar);
+        tvProgressCircle = findViewById(R.id.progressBar2);
 
         myServiceNotification = new MyServiceNotification();
         Context context = this.getApplicationContext();
@@ -79,35 +83,44 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
         tvProgressCircle.setVisibility(View.GONE);
 
 
-//        Log.d("summD1", String.valueOf(employee.getCountries()));
+      //  Log.d("summD1", String.valueOf(employee.getCountries()));
 
         stocksBUT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvProgressCircle.setVisibility(View.VISIBLE);
                 try {
-                    create_a_list();
+                  create_a_list();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                tvProgressCircle.setVisibility(View.VISIBLE);
-/*
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainer, rv_promo_fragment.newInstance())
-                        .addToBackStack(rv_promo_fragment.class.getName())
-                        .commit();
-                final Intent intent = new Intent(getApplicationContext(), RV_promo.class);
+                tvProgressCircle.setVisibility(View.GONE);
 
-              startActivity(intent);
-*/
+
+
 
 
 
             }
         });
+
+        butFrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            /*getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, rv_promo_fragment.newInstance(), "USERNAME_KEY")
+                        .addToBackStack(rv_promo_fragment.class.getName())
+                        .commit();*/
+                final Intent intent = new Intent(getApplicationContext(), RemainsActivity.class);
+
+               startActivity(intent);
+
+            }
+        });
+
         Covers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +164,9 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
             public void onClick(View v) {
                 final Intent intent = new Intent(getApplicationContext(), AcAksy.class);
                 startActivity(intent);
+                //final Intent intent = new Intent(getApplicationContext(), RemainsActivity.class);
 
+               // startActivity(intent);
 
             }
         });
@@ -210,7 +225,7 @@ ImageButton stocksBUT, Covers, SIM_T2,SIM_MTS,RTC,Aksy;
         });
         final Intent intent = new Intent(getApplicationContext(), RV_promo.class);
         startActivity(intent);
-        tvProgressCircle.setVisibility(View.GONE);
+       // tvProgressCircle.setVisibility(View.GONE);
         future.get();
 
 

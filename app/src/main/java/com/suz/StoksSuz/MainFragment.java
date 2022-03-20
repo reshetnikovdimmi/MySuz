@@ -75,8 +75,11 @@ public class MainFragment extends Fragment implements BaseView.View, BaseView.Cr
         BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvProgressCircle.setVisibility(View.VISIBLE);
+               v.setEnabled(false);
                 context = getActivity();
-                presenter.doLogin(url_authorization,item,ETP.getText().toString(),context );
+                presenter.doLogin(url_authorization,item,ETP.getText().toString());
+
              /* getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, MainFragment.newInstance())
@@ -84,6 +87,7 @@ public class MainFragment extends Fragment implements BaseView.View, BaseView.Cr
                         .commit();*/
             }
         });
+
         spinner = (Spinner) v.findViewById(R.id.spinner);
          return v;
     }
@@ -110,24 +114,24 @@ public class MainFragment extends Fragment implements BaseView.View, BaseView.Cr
     @Override
     public void onStart() {
         super.onStart();
-
+        context = getActivity();
         if (mSharedPreferencesHelper.isLoggin())  {
-            context = getActivity();
+
             HashMap<String, String> user = mSharedPreferencesHelper.getUserDetail();
             presenter.doLogin(
                     url_authorization,
                     user.get(mSharedPreferencesHelper.NAME),
-                    user.get(mSharedPreferencesHelper.EMAIL),
-                    context );
+                    user.get(mSharedPreferencesHelper.EMAIL));
         } else {
-            context = getActivity();
-            create_a_list.inCreate_a_list(url,context);
+
+            create_a_list.inCreate_a_list(url);
         }
     }
 
     @Override
     public void onSuccess() {
         tvProgressCircle.setVisibility(View.GONE);
+        BT.setEnabled(true);
     }
 
     @Override
@@ -137,8 +141,10 @@ public class MainFragment extends Fragment implements BaseView.View, BaseView.Cr
     }
 
 
+
+
     @Override
-    public void inCreate_countries(ArrayList<String> countriess, Context context) {
+    public void inCreate_countries(ArrayList<String> countriess) {
         Spinner(countriess);
     }
 

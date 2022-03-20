@@ -39,7 +39,7 @@ public class AcAksy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aksy);
+        setContentView(R.layout.fv_aksy);
 
         covers = findViewById(R.id.textView3);
         tables = (LinearLayout) findViewById(R.id.table);
@@ -47,7 +47,7 @@ public class AcAksy extends AppCompatActivity {
 
         RetroClient.getApiService().getMyAksy()
                 .subscribeOn(Schedulers.io())
-                .doOnNext(Aksy->getMusicDao().insertAksy(Aksy.getData()))
+                .doOnSuccess(Aksy->getMusicDao().insertAksy(Aksy.getData()))
                 .onErrorReturn(new Function<Throwable, AksyList>() {
                     @Override
                     public AksyList apply(@NonNull Throwable throwable) throws Exception {

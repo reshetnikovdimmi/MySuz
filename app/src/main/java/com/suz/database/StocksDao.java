@@ -42,6 +42,7 @@ public interface StocksDao {
     List<Aksy> getAksy();
 
 
+
 //SELECT * FROM `stocks` WHERE `c` <= '2021-10-31' AND `do` >= '2021-10-31' ORDER BY `stocks`.`do` DESC
     @Query("select * from stocks where `end` >= :date and `beginning` <= :date order by `end`asc")
     List<Stocks> getAlbums(String date);

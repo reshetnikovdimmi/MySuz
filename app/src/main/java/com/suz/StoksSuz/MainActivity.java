@@ -13,11 +13,11 @@ public class MainActivity extends SingleFragmentActivity {
     public static final String USERNAME_KEY = "USERNAME_KEY";
 
     @Override
-    public void inCreate_countries(ArrayList<String> countries, Context context) {
+    public void inCreate_countries(ArrayList<String> countries) {
 
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(USERNAME_KEY);
         MainFragment fragment_b = (MainFragment) fragment;
-        fragment_b.inCreate_countries(countries, context);
+        fragment_b.inCreate_countries(countries);
     }
 
     @Override
@@ -40,6 +40,8 @@ public class MainActivity extends SingleFragmentActivity {
         MainFragment fragment_b = (MainFragment) fragment;
         fragment_b.onError();
     }
+
+
 
 
     @Override

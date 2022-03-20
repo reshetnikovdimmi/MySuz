@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MySuz"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".Service_Notification.MyServiceNotification"
+            android:enabled="true"
+            android:exported="true" />
         <activity
             android:name=".Entry_and_promotions.AcAksy"
             android:exported="false"
@@ -35,18 +39,16 @@
         <activity
             android:name=".Entry_and_promotions.Activiti_RTC"
             android:exported="false" />
-
-        <service
-            android:name=".Service_Notification.MyServiceNotification"
-            android:enabled="true"
-            android:exported="true" />
-
+        <activity
+            android:name=".Entry_and_promotions.RemainsActivity"
+            android:exported="false" />
         <activity
             android:name=".StoksSuz.MainActivityMenu"
             android:exported="true" />
         <activity
             android:name=".StoksSuz.MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,7 +2,6 @@ package com.suz.Entry_and_promotions;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -12,14 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-
 import com.suz.AppDelegate;
-
 import com.suz.Entry_and_promotions.Retrofit.RetroClient;
 import com.suz.Entry_and_promotions.Retrofit.StocksList;
 import com.suz.R;
 import com.suz.StoksSuz.ListAdapter;
-
 import com.suz.database.Stocks;
 import com.suz.database.StocksDao;
 
@@ -32,7 +28,6 @@ import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -57,7 +52,7 @@ public class RV_promo extends AppCompatActivity implements SwipeRefreshLayout.On
         refreshLayout = findViewById(R.id.sRL);
         refreshLayout.setColorSchemeColors(Color.BLACK);
         refreshLayout.setOnRefreshListener(this);
-        tvProgressCircle = findViewById(R.id.vf_progressbar);
+        tvProgressCircle = findViewById(R.id.progressBar2);
         mExpandableListView = findViewById(R.id.expandable_listview);
 
         RetroClient.getApiService().getMyStocks()

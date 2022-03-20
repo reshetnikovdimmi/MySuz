@@ -65,7 +65,7 @@ public class NotifResiver extends BroadcastReceiver implements BaseView.extracte
                     dialog.dismiss();
                     onReceive(context,intent);
                     if (commo_internet.isConnectedToInternet(context)) {
-                        create_a_list.inCreate_a_list("https://user357.000webhostapp.com/Android/Droid_Suz.php",context);
+                        create_a_list.inCreate_a_list("https://user357.000webhostapp.com/Android/Droid_Suz.php");
                    }
                 }
             });

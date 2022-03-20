@@ -12,6 +12,8 @@ public interface BaseView {
 
     void showError();
 
+
+
     interface View{
         void onSuccess();
 
@@ -19,23 +21,23 @@ public interface BaseView {
 
 
 
-
     }
 
     interface Presenter {
-        void doLogin(String URL, String login, String password, Context context);
+        void doLogin(String URL, String login, String password);
 
     }
 
     interface Create_countries {
-        void inCreate_countries (ArrayList<String> countries,Context context);
+        void inCreate_countries (ArrayList<String> countries);
     }
 
     interface extracted{
-    void inextracted        (String s, String b, Context context);
+    void inextracted (String s, String b, Context context);
 }
     interface Create_a_list {
-        void inCreate_a_list (String URL, Context context);
+        void inCreate_a_list (String URL);
     }
+
 
 }
